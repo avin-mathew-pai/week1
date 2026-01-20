@@ -16,7 +16,7 @@ column_names = df.columns
 # print(column_names)
 
 schema = pyarrow.Schema.from_pandas(df)
-print(schema)
+# print(schema)
 
 dtype_mappings = {
     "int64": "BIGINT",
@@ -47,22 +47,47 @@ dtype_mappings = {
     "struct": "JSONB"         
 }
 
+# print(dtype_mappings["struct"])
+
+
+
+
+create_query = "CREATE TABLE IF NOT EXISTS raw_trips ("
+
+for i in range(len(schema)):
+    create_query += f"\n\t{schema[i].name} {dtype_mappings[schema[i].type]},"
+
+create_query = create_query[:-1]
+
+create_query += "\n);"
+
+# print(create_query)
+
+
 # for field in schema:
 #     print(f"\n##{field.name}    ##{field.type}")
 
-# db_conn = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+check_table_query = """
+                        SELECT table_name
+                        FROM information_schema.tables
+                        WHERE table_type = 'BASE TABLE'
+                        AND table_schema NOT IN ('pg_catalog', 'information_schema');
+                    """
 
-# try:
-#     with psycopg.connect(db_conn, connect_timeout=5) as conn:
-#         with conn.cursor() as cur:
-#             cur.execute("SELECT version();")
-#             version=cur.fetchone()[0]
-#             print(f"Current version is  : {version}")
 
-#             cur.execute("SELECT 1 + 1;")
-#             print(f"Quick test results for (1+1) = {cur.fetchone()[0]}")
+db_conn = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-# except Exception as e:
-#     print(f"Connection failed !!\n\n{repr(e)}")
+try:
+    with psycopg.connect(db_conn, connect_timeout=5) as conn:
+        with conn.cursor() as cur:
+            cur.execute(create_query)
+
+            cur.execute(check_table_query)
+            b=cur.fetchall()
+
+            print(f"{b}")
+
+except Exception as e:
+    print(f"Connection failed !!\n\n{repr(e)}")
 
 
