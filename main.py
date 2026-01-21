@@ -19,21 +19,24 @@ file_path = "/mnt/c/Datasetw1/yellow_tripdata_2023-01.parquet"
 #reading using polars
 df = pl.scan_parquet(file_path)
 
+# # for testing with sample data
+# df = pl.scan_parquet(file_path).collect().sample(n=150)
+
 URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 # --------------------------------------------------------------------------------
 
-# # parquet ---> postgres (just writing raw data as it is)
-# try:
-#     df.collect().write_database(
-#             table_name = "raw_trips",
-#             connection = URI,
-#             #change according to need ('replace' to show working)
-#             if_table_exists = "fail",
-#             engine = "adbc"
-#         )
-# except Exception as e:
-#     print(f"ERROR \n {repr(e)}")
+# parquet ---> postgres (just writing raw data as it is)
+try:
+    df.collect().write_database(
+            table_name = "raw_trips",
+            connection = URI,
+            #change according to need ('replace' to show working)
+            if_table_exists = "fail",
+            engine = "adbc"
+        )
+except Exception as e:
+    print(f"ERROR \n {repr(e)}")
 
 # ---------------------------------------------------------------------
 
@@ -53,7 +56,7 @@ URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 # )
 # print(f"Total rows = {df_len}")
 
-# cleaning steps
+# CLEANING steps
 
 # 1. Adding an is_valid column (to polars df not to postgres table)
 
@@ -68,11 +71,98 @@ df = df.with_columns([
     .alias('is_valid')
 ])
 
-valid_data_no = df.group_by("is_valid").len().collect()
-print(f"No. of valid data : {valid_data_no}")
 
-invalid_datas_ex = df.filter(pl.col("is_valid") == False).head(5).collect()
-print(f"Invalid data : \n\n {invalid_datas_ex}")
+# 2. creating trip_duration_min column if is_valid is true
+# df = df.with_columns([
+#     pl.when(pl.col('is_valid') == True)
+#     .then(
+#         (pl.col('tpep_dropoff_datetime') - pl.col('tpep_pickup_datetime'))
+#         .dt.total_seconds() / 60
+#     )
+#     .alias('trip_duration_min'),
+
+#     #maybe do this even if it is not valid because both fields are correct even if error happened (optional) or wrap it in is_valid == True
+#     pl.col('tpep_pickup_datetime').dt.hour().alias('hour_of_day'),
+
+#     pl.col('tpep_pickup_datetime').dt.weekday().alias('day_of_week'),
+
+# ])
+
+#3. add speed field
+
+# df = df.with_columns([
+#     pl.when(pl.col('is_valid') == True)
+#     .then(
+#         (pl.col('trip_distance') / (pl.col('trip_duration_min') / 60))
+#     )
+#     .alias('trip_speed_mph')
+# ])
+
+# print(df)
+
+#4. if dropping all non valid rows use this
+# df = df.filter(pl.col('is_valid'))
+
+# cleaned df ---> postgres
+try:
+    df.collect().write_database(
+            table_name = "clean_trips",
+            connection = URI,
+            #change according to need ('replace' to show working)
+            if_table_exists = "fail",
+            engine = "adbc"
+        )
+except Exception as e:
+    print(f"ERROR \n {repr(e)}")
+
+
+
+# # printing from postgres(using polars)(just checking output)
+# df_head = pl.read_database_uri(
+#     query = "SELECT * FROM clean_trips ORDER BY RANDOM() LIMIT 10;",
+#     uri = URI,
+#     engine='adbc'
+# )
+# print(f"\n\nClean Data from POSTGRES \n\n{df_head}\n\n\n\n\n {df_head.schema}")
+
+
+# queries for checking
+df_query = pl.read_database_uri(
+    query = "SELECT COUNT(*) FROM clean_trips;",
+    uri = URI,
+    engine='adbc'
+)
+print(df_query)
+
+df_query = pl.read_database_uri(
+    query = "SELECT COUNT(*) FROM clean_trips WHERE fare_amount < 0;",
+    uri = URI,
+    engine='adbc'
+)
+print(df_query)
+
+df_query = pl.read_database_uri(
+    query = "SELECT COUNT(*) FROM clean_trips WHERE trip_distance <= 0;",
+    uri = URI,
+    engine='adbc'
+)
+print(df_query)
+
+df_query = pl.read_database_uri(
+    query = "SELECT MIN(trip_duration_min), MAX(trip_duration_min), AVG(trip_duration_min) FROM clean_trips;",
+    uri = URI,
+    engine='adbc'
+)
+print(df_query)
+
+df_query = pl.read_database_uri(
+    query = "SELECT day_of_week, COUNT(*) FROM clean_trips GROUP BY day_of_week ORDER BY day_of_week;",
+    uri = URI,
+    engine='adbc'
+)
+print(df_query)
+
+
 
 
 
