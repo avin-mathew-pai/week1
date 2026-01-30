@@ -77,5 +77,6 @@ table_loader.load_table(df=cleaned_df, table_name=clean_table_name, URI=URI_DOCK
 
 
 
+print("testtesttesttese/n/n   DB_NAME =", DB_NAME)
 
 print("\n\n\n\n\n\n\nPipeline finished successfully!!!!!!")

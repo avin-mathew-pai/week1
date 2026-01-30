@@ -7,7 +7,7 @@ class Loader():
                     table_name = table_name,
                     connection = URI,
                     #change according to need ('replace' to show working)
-                    if_table_exists = "fail",
+                    if_table_exists = "replace",
                     engine = "adbc"
                 )
         except Exception as e:

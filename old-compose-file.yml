@@ -1,6 +1,6 @@
 services:
-  db:
-    image: postgres:15
+  taxi_db:
+    image: postgres:13
     container_name: taxi_db_server
 
     environment:
@@ -10,7 +10,14 @@ services:
     ports:
       - "5434:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - taxi_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${DB_USER}"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
 
   pipeline:
     build: .
@@ -20,11 +27,12 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      - taxi_db
     volumes:
       - /mnt/c/Datasetw1:/app_week1/data
+    restart: "no"
 
 volumes:
-  postgres_data:
+  taxi_postgres_data:
 
 
