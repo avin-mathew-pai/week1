@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main1.py loader.py cleaner.py ./
 
-CMD ["python", "main1.py"]
+# CMD ["python", "main1.py"]
 
 
 
