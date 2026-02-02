@@ -704,3 +704,513 @@ File Path                                                                       
 [2026-01-30T12:25:48.183+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
 [2026-01-30T12:30:49.155+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
 [2026-01-30T12:30:49.158+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T15:25:33.092+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2026-02-01T15:25:33.103+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2026-02-01T15:25:33.106+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2026-02-01T15:25:33.107+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T15:25:33.115+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T15:30:33.800+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T15:30:33.801+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T15:41:23.488+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T15:41:23.489+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T15:46:24.021+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T15:46:24.022+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T15:51:24.558+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T15:51:24.560+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T16:36:51.544+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T16:36:51.546+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T16:50:19.534+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T16:50:19.535+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T16:55:19.657+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T16:55:19.658+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T17:00:20.238+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T17:00:20.240+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T17:24:55.775+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T17:24:55.776+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-02-01T17:29:55.857+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T17:29:55.859+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T17:30:14.259+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:30:05                       5
+================================================================================
+[2026-02-01T17:30:45.605+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.08s           2026-02-01T17:30:31                       5
+================================================================================
+[2026-02-01T17:31:16.980+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:31:01                       5
+================================================================================
+[2026-02-01T17:31:48.289+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:31:32                       5
+================================================================================
+[2026-02-01T17:32:19.623+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:32:02                       5
+================================================================================
+[2026-02-01T17:32:50.126+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:32:32                       5
+================================================================================
+[2026-02-01T17:33:22.388+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:33:08                       5
+================================================================================
+[2026-02-01T17:33:53.591+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:33:39                       5
+================================================================================
+[2026-02-01T17:34:24.974+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:34:16                       5
+================================================================================
+[2026-02-01T17:34:56.344+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T17:34:56.345+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T17:34:56.362+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:34:47                       5
+================================================================================
+[2026-02-01T17:35:27.653+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.07s           2026-02-01T17:35:17                       5
+================================================================================
+[2026-02-01T17:35:58.841+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.07s           2026-02-01T17:35:47                       5
+================================================================================
+[2026-02-01T17:36:30.151+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.07s           2026-02-01T17:36:18                       5
+================================================================================
+[2026-02-01T17:37:01.555+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:36:49                       5
+================================================================================
+[2026-02-01T17:37:32.870+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:37:19                       5
+================================================================================
+[2026-02-01T17:38:04.169+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.12s           2026-02-01T17:37:51                       5
+================================================================================
+[2026-02-01T17:38:35.558+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.08s           2026-02-01T17:38:22                       5
+================================================================================
+[2026-02-01T17:39:07.143+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:38:54                       5
+================================================================================
+[2026-02-01T17:39:38.651+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.06s           2026-02-01T17:39:24                       5
+================================================================================
+[2026-02-01T17:39:57.022+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T17:39:57.023+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T17:40:09.152+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:39:55                       5
+================================================================================
+[2026-02-01T17:40:41.302+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.05s           2026-02-01T17:40:25                       5
+================================================================================
+[2026-02-01T18:17:17.472+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T18:17:17.473+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T18:26:49.513+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T18:26:49.515+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T18:27:12.881+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           0           1  0.27s           2026-02-01T18:26:49                       5
+================================================================================
+[2026-02-01T18:27:44.692+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  2.04s           2026-02-01T18:27:29                      45
+================================================================================
+[2026-02-01T18:28:17.122+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.14s           2026-02-01T18:28:00                      12
+================================================================================
+[2026-02-01T18:28:48.331+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.23s           2026-02-01T18:28:30                      12
+================================================================================
+[2026-02-01T18:29:20.115+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.13s           2026-02-01T18:29:00                      12
+================================================================================
+[2026-02-01T18:29:51.785+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.12s           2026-02-01T18:29:31                      12
+================================================================================
+[2026-02-01T18:30:21.497+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.16s           2026-02-01T18:30:02                      12
+================================================================================
+[2026-02-01T18:30:53.855+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.12s           2026-02-01T18:30:32                      12
+================================================================================
+[2026-02-01T18:31:24.787+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.11s           2026-02-01T18:31:03                      12
+================================================================================
+[2026-02-01T18:31:49.584+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T18:31:49.586+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T18:31:55.535+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.12s           2026-02-01T18:31:33                      12
+================================================================================
+[2026-02-01T18:32:26.300+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.14s           2026-02-01T18:32:04                      12
+================================================================================
+[2026-02-01T18:38:30.050+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-01T18:38:30.051+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-01T18:38:33.104+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.12s           2026-02-01T18:38:30                      12
+================================================================================
+[2026-02-02T04:49:06.824+0000] {manager.py:483} INFO - Processing files using up to 2 processes at a time 
+[2026-02-02T04:49:06.855+0000] {manager.py:484} INFO - Process each file at most once every 30 seconds
+[2026-02-02T04:49:06.856+0000] {manager.py:485} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2026-02-02T04:49:06.856+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-02T04:49:06.871+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-02T04:49:09.373+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                           PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run      Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py    207  0.62s             0           0                                                   0
+================================================================================
+[2026-02-02T04:49:39.607+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  3.23s           2026-02-02T04:49:11                      12
+================================================================================
+[2026-02-02T04:50:09.841+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.86s           2026-02-02T04:49:43                      12
+================================================================================
+[2026-02-02T04:50:40.349+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.39s           2026-02-02T04:50:13                      12
+================================================================================
+[2026-02-02T04:51:10.432+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.59s           2026-02-02T04:50:45                      12
+================================================================================
+[2026-02-02T04:51:40.679+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.76s           2026-02-02T04:51:15                      12
+================================================================================
+[2026-02-02T04:52:10.773+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.83s           2026-02-02T04:51:47                      12
+================================================================================
+[2026-02-02T04:52:41.056+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.69s           2026-02-02T04:52:17                      12
+================================================================================
+[2026-02-02T04:53:11.224+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  1.30s           2026-02-02T04:52:49                      12
+================================================================================
+[2026-02-02T04:53:41.753+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.48s           2026-02-02T04:53:20                      12
+================================================================================
+[2026-02-02T04:54:07.014+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-02T04:54:07.015+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-02T04:54:12.080+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.20s           2026-02-02T04:53:51                      12
+================================================================================
+[2026-02-02T04:54:42.336+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.18s           2026-02-02T04:54:21                      12
+================================================================================
+[2026-02-02T04:55:12.675+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.15s           2026-02-02T04:54:51                      12
+================================================================================
+[2026-02-02T04:55:42.897+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.32s           2026-02-02T04:55:22                      12
+================================================================================
+[2026-02-02T04:56:13.408+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.41s           2026-02-02T04:55:52                      12
+================================================================================
+[2026-02-02T04:56:44.027+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.22s           2026-02-02T04:56:23                      12
+================================================================================
+[2026-02-02T04:57:14.433+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.18s           2026-02-02T04:56:53                      12
+================================================================================
+[2026-02-02T04:57:44.880+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.47s           2026-02-02T04:57:24                      12
+================================================================================
+[2026-02-02T04:58:15.440+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.28s           2026-02-02T04:57:54                      12
+================================================================================
+[2026-02-02T04:58:46.045+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.25s           2026-02-02T04:58:25                      12
+================================================================================
+[2026-02-02T04:59:07.395+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-02-02T04:59:07.396+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-02-02T04:59:16.498+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.20s           2026-02-02T04:58:55                      12
+================================================================================
+[2026-02-02T04:59:46.740+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.22s           2026-02-02T04:59:25                      12
+================================================================================
+[2026-02-02T05:00:17.127+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.20s           2026-02-02T04:59:56                      12
+================================================================================
+[2026-02-02T05:00:47.392+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.15s           2026-02-02T05:00:26                      12
+================================================================================
+[2026-02-02T05:01:17.717+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                         PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/nyc_taxi_ingestion_pipeline.py                           1           0  0.32s           2026-02-02T05:00:56                      12
+================================================================================

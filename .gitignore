@@ -11,4 +11,4 @@ venv/
 # Ignore the __pycache__ directory created by Python 3.2+
 __pycache__/
 
-logs/scheduler
+logs/
