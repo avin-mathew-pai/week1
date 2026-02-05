@@ -4,7 +4,7 @@ from loader import Loader
 from cleaner import Cleaner
 import sys
 
-load_dotenv()
+load_dotenv(dotenv_path="../config/.env")
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")

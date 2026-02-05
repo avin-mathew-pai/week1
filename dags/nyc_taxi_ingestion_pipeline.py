@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 import logging
 import os
 import polars as pl
-from loader import Loader
-from cleaner import Cleaner
+from taxi_utils.loader import Loader
+from taxi_utils.cleaner import Cleaner
 
 ORIGINAL_FILE_PATH = "/app_week1/data/yellow_tripdata_2023-01.parquet"
 TEMP_FILE = "/app_week1/data/temp_clean.parquet"
