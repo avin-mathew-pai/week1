@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
-from typing import List
+from typing import List, Optional
 from database import get_db
 from models import CleanTrip
 from schemas import TripSummary
@@ -45,5 +45,74 @@ def get_trips_list(limit: int, offset: int, db: Session = Depends(get_db)):
     stmt = select(CleanTrip).limit(limit).offset(offset)
     result = db.execute(stmt).all()
     return result
+
+@api.get('/trips/filter')
+def get_filtered_trips(
+    day_of_week: Optional[int] = None, 
+    hour_of_day: Optional[int] = None, 
+    payment_type: Optional[int] = None, 
+    min_fare: Optional[float] = None, 
+    max_faredb: Optional[float] = None, 
+    db: Session = Depends(get_db)
+    ):
+    stmt = select(CleanTrip).limit(10)
+
+    if day_of_week is not None:
+        stmt = stmt.where(CleanTrip.day_of_week == day_of_week)
+
+    if hour_of_day is not None:
+        stmt = stmt.where(CleanTrip.hour_of_day == hour_of_day)
+    
+    if payment_type is not None:
+        stmt = stmt.where(CleanTrip.payment_type == payment_type)
+    
+    if min_fare is not None:
+        stmt = stmt.where(CleanTrip.total_amount >= min_fare)
+    
+    if max_faredb is not None:
+        stmt = stmt.where(CleanTrip.total_amount <= max_faredb)
+
+    result = db.execute(stmt).all()
+    return result
+
+@api.get('/trips/aggregates')
+def get_aggregates(db: Session = Depends(get_db)):
+
+    p_hour = db.execute(text(
+        """SELECT hour_of_day, COUNT("VendorID") as trips_per_hour FROM clean_trips GROUP BY hour_of_day ORDER BY hour_of_day ASC;"""
+    ))
+
+    p_day = db.execute(text(
+        """SELECT day_of_week, COUNT("VendorID") as trips_per_day_of_week FROM clean_trips GROUP BY  day_of_week;"""
+    ))
+
+    avg_fare = db.execute(text(
+        """SELECT passenger_count, AVG(total_amount) AS average_fare FROM clean_trips GROUP BY passenger_count;"""
+    ))
+
+    return {
+        "p_hour": [
+            {"hour_of_day": row.hour_of_day, "trips_per_hour": row.trips_per_hour}
+            for row in p_hour
+        ],
+        "p_day": [
+            {"hour_of_day": row.day_of_week, "trips_per_hour": row.trips_per_day_of_week}
+            for row in p_day
+        ],
+        "avg_fare": [
+            {"hour_of_day": row.passenger_count, "trips_per_hour": row.average_fare}
+            for row in avg_fare
+        ]
+    }
+
+    # stmt = (
+    #         select
+    #         (
+    #                 CleanTrip.hour_of_day,
+    #                 func.count(CleanTrip.VendorID).label("trips_per_hour")
+    #         ).group_by(CleanTrip.hour_of_day)
+    #     )
+
+
 
 

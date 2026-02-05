@@ -13,7 +13,6 @@ class TripSummary(BaseModel):
 
 
 class Trip(BaseModel):
-    # We use exact column names so FastAPI maps them automatically
     VendorID: Optional[int] = None
     tpep_pickup_datetime: Optional[datetime] = None
     tpep_dropoff_datetime: Optional[datetime] = None
@@ -21,7 +20,6 @@ class Trip(BaseModel):
     passenger_count: Optional[float] = None
     trip_distance: Optional[float] = None
     
-    # DB says 'double precision', so we must use float (even if logic says ID is int)
     RatecodeID: Optional[float] = None 
     
     store_and_fwd_flag: Optional[str] = None
@@ -46,6 +44,5 @@ class Trip(BaseModel):
     trip_speed_mph: Optional[float] = None
 
     class Config:
-        # This allows Pydantic to read data from SQLAlchemy/Polars objects
         from_attributes = True
 
