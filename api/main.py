@@ -39,3 +39,11 @@ def get_summary(db: Session = Depends(get_db)):
         "min_trip_distance" : {result.min_trip_distance},
         "max_trip_distance" : {result.max_trip_distance}
     }
+
+@api.get('/trips')
+def get_trips_list(limit: int, offset: int, db: Session = Depends(get_db)):
+    stmt = select(CleanTrip).limit(limit).offset(offset)
+    result = db.execute(stmt).all()
+    return result
+
+
