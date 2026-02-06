@@ -2,11 +2,15 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
 from typing import Optional
-from database import get_db
+from database import get_db, redis_client
+from time import perf_counter
 from models import CleanTrip
+import json
 # from schemas import TripSummary
 
 api = FastAPI(title="taxi data api")
+
+CACHE_TTL_SECONDS = 30
 
 @api.get('/health')
 def health_check(db: Session = Depends(get_db)):
@@ -18,6 +22,19 @@ def health_check(db: Session = Depends(get_db)):
     
 @api.get('/trips/summary')
 def get_summary(db: Session = Depends(get_db)):
+
+    start = perf_counter()
+
+    cache_key = "trips:summary"
+    cached = redis_client.get(cache_key)
+
+    if cached:
+        print("Data availiable in redis!!")
+
+        duration = perf_counter() - start
+        print(f"\n\n\nTime taken for this request using redis : {duration}\n\n\n")
+
+        return cached
     
     stmt = select(
         func.count(CleanTrip.VendorID).label("total_trip_count"),
@@ -29,16 +46,24 @@ def get_summary(db: Session = Depends(get_db)):
         func.max(CleanTrip.trip_distance).label("max_trip_distance")
     )
 
+
     result = db.execute(stmt).one()
-    return {
-        "total_trip_count" : {result.total_trip_count},
-        "min_pickup_timestamp" : {result.min_pickup_timestamp},
-        "max_pickup_timestamp" : {result.max_pickup_timestamp},
-        "min_fare_amout" : {result.min_fare_amount},
-        "max_fare_amount" : {result.max_fare_amount},
-        "min_trip_distance" : {result.min_trip_distance},
-        "max_trip_distance" : {result.max_trip_distance}
+    final_result = {
+        "total_trip_count" : result.total_trip_count,
+        "min_pickup_timestamp" : str(result.min_pickup_timestamp),
+        "max_pickup_timestamp" : str(result.max_pickup_timestamp),
+        "min_fare_amout" : result.min_fare_amount,
+        "max_fare_amount" : result.max_fare_amount,
+        "min_trip_distance" : result.min_trip_distance,
+        "max_trip_distance" : result.max_trip_distance
     }
+
+    redis_client.setex(cache_key, CACHE_TTL_SECONDS, json.dumps(final_result))
+
+    duration = perf_counter() - start
+    print(f"\n\n\nTime taken for this request using postgres : {duration}\n\n\n")
+
+    return final_result
 
 @api.get('/trips')
 def get_trips_list(limit: int, offset: int, db: Session = Depends(get_db)):
@@ -78,6 +103,19 @@ def get_filtered_trips(
 @api.get('/trips/aggregates')
 def get_aggregates(db: Session = Depends(get_db)):
 
+    start = perf_counter()
+
+    cache_key = "trips:aggregates"
+    cached = redis_client.get(cache_key)
+
+    if cached:
+        print("\n\nData availiable in redis!!\n\n")
+
+        duration = perf_counter() - start
+
+        print(f"Time taken for redis = {duration}")
+        return cached
+
     p_hour = db.execute(text(
         """SELECT hour_of_day, COUNT("VendorID") as trips_per_hour FROM clean_trips GROUP BY hour_of_day ORDER BY hour_of_day ASC;"""
     ))
@@ -90,7 +128,7 @@ def get_aggregates(db: Session = Depends(get_db)):
         """SELECT passenger_count, AVG(total_amount) AS average_fare FROM clean_trips GROUP BY passenger_count;"""
     ))
 
-    return {
+    final_result = {
         "p_hour": [
             {"hour_of_day": row.hour_of_day, "trips_per_hour": row.trips_per_hour}
             for row in p_hour
@@ -104,6 +142,13 @@ def get_aggregates(db: Session = Depends(get_db)):
             for row in avg_fare
         ]
     }
+
+    redis_client.setex(cache_key, CACHE_TTL_SECONDS, json.dumps(final_result))
+
+    duration = perf_counter() - start
+    print(f"Time taken for postgres = {duration}")
+
+    return final_result
 
     # stmt = (
     #         select

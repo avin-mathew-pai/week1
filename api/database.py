@@ -23,6 +23,8 @@ engine = create_engine(DB_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+redis_client = redis.Redis.from_url(REDIS_URL, decode_responses=True)
+
 def get_db():
     db = SessionLocal()
     try:
