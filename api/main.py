@@ -1,10 +1,10 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
-from typing import List, Optional
+from typing import Optional
 from database import get_db
 from models import CleanTrip
-from schemas import TripSummary
+# from schemas import TripSummary
 
 api = FastAPI(title="taxi data api")
 

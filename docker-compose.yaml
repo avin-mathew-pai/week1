@@ -305,20 +305,45 @@ services:
       start_period: 5s
     restart: always
 
-  pipeline:
-    build: .
-    container_name: taxi_pipeline_runner
-    stdin_open: true
-    tty: true
+  # pipeline:
+  #   build: .
+  #   container_name: taxi_pipeline_runner
+  #   stdin_open: true
+  #   tty: true
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - taxi_db
+  #   volumes:
+  #     - /mnt/c/Datasetw1:/app_week1/data
+  #   restart: "no"
+  
+  taxi-api:
+    build: api/
+    container_name: taxi_api
     env_file:
       - .env
     depends_on:
       - taxi_db
+    ports:
+      - "8000:8000"
     volumes:
-      - /mnt/c/Datasetw1:/app_week1/data
-    restart: "no"
-  
+      - ./api:/app
+    restart: always
+
+  cache:
+    image: redis:8.4
+    container_name: redis-cache
+    depends_on:
+      - taxi_db
+    ports:
+      - "6379:6379"
+    volumes:
+      - taxi-cache:/data
+    restart: always
+
 
 volumes:
   postgres-db-volume:
   taxi_postgres_data:
+  taxi-cache:

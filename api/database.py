@@ -1,4 +1,5 @@
 import os
+import redis
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
@@ -11,10 +12,12 @@ DB_HOST = os.getenv("DB_HOST")
 DB_HOST_DOCKER = os.getenv("DB_HOST_DOCKER")
 DB_PORT = os.getenv("DB_PORT")
 
-DB_PORT = 5434  #for local run testing 
+# DB_PORT = 5434  #for local run testing 
 DB_NAME = os.getenv("DB_NAME")
 
-DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+DB_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST_DOCKER}:{DB_PORT}/{DB_NAME}"
+
+REDIS_URL = "redis://cache:6379/0"
 
 engine = create_engine(DB_URL)
 
