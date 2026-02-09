@@ -72,6 +72,7 @@ def get_trips_list(limit: int, offset: int, db: Session = Depends(get_db)):
     result = db.execute(stmt).all()
     return result
 
+
 @api.get('/trips/filter')
 def get_filtered_trips(
     day_of_week: Optional[int] = None, 
@@ -150,6 +151,30 @@ def get_aggregates(db: Session = Depends(get_db)):
     print(f"Time taken for postgres = {duration}")
 
     return final_result
+
+#xtra del
+@api.get("/testfordel")
+def del_key(
+    delete: bool, 
+    db: Session = Depends(get_db)
+    ):
+    cache_key = "trips:test"
+    cached = redis_client.get(cache_key)
+    if delete:
+        vall = redis_client.getdel(name=cache_key)
+        return f"Key deleted successfully !! \n >> {vall}"
+    if cached:
+        print("Daat avail in cache!")
+        return cached
+    stmt = select(func.max(CleanTrip.total_amount).label("max_fare_amount"))
+    result = db.execute(stmt).scalar()
+    result_formatted = {
+        "max_fare_amount" : result
+    }
+    # print(f"\n\n\n\n\n\n\n\n{result_formatted}\n\n\n\n\n\n\n\n")
+    redis_client.setex(name=cache_key, time= 5, value=json.dumps(result_formatted))
+    return result_formatted
+
 
     # stmt = (
     #         select
