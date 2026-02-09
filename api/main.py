@@ -1,7 +1,7 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
-from typing import Optional
+from typing import Optional, Annotated
 from database import get_db
 from redis_config import redis_client
 from time import perf_counter
@@ -9,7 +9,7 @@ from models import CleanTrip
 import json
 # from schemas import TripSummary
 
-CACHE_TTL_SECONDS = 30
+CACHE_TTL_SECONDS = 300
 
 api = FastAPI(title="taxi data api")
 
@@ -154,26 +154,38 @@ def get_aggregates(db: Session = Depends(get_db)):
 
 #xtra del
 @api.get("/testfordel")
-def del_key(
-    delete: bool, 
-    db: Session = Depends(get_db)
-    ):
-    cache_key = "trips:test"
-    cached = redis_client.get(cache_key)
-    if delete:
-        vall = redis_client.getdel(name=cache_key)
-        return f"Key deleted successfully !! \n >> {vall}"
-    if cached:
-        print("Daat avail in cache!")
-        return cached
-    stmt = select(func.max(CleanTrip.total_amount).label("max_fare_amount"))
-    result = db.execute(stmt).scalar()
-    result_formatted = {
-        "max_fare_amount" : result
-    }
-    # print(f"\n\n\n\n\n\n\n\n{result_formatted}\n\n\n\n\n\n\n\n")
-    redis_client.setex(name=cache_key, time= 5, value=json.dumps(result_formatted))
-    return result_formatted
+def del_key(key_names: Annotated[list[str] | None, Query()]):
+    resp = ""
+    for cache_key in key_names:
+        if cache_key in redis_client.keys():
+            print("found")
+            vall = redis_client.getdel(name=cache_key)
+            resp +=  f"key : {cache_key} deleted successfully!!\n value in key >>>  {vall} "
+        else:
+            print("Not found")
+            resp += f"  key : {cache_key} does not exist!!  "
+    resp += f"remaining keys {redis_client.keys()}"
+    return resp
+            
+
+    # return keys   
+
+        
+        # vall = redis_client.getdel(name=cache_key)
+        # return f"Key deleted successfully !! \n >> {vall}"
+    
+
+    # if cached:
+    #     print("Daat avail in cache!")
+    #     return cached
+    # stmt = select(func.max(CleanTrip.total_amount).label("max_fare_amount"))
+    # result = db.execute(stmt).scalar()
+    # result_formatted = {
+    #     "max_fare_amount" : result
+    # }
+    # # print(f"\n\n\n\n\n\n\n\n{result_formatted}\n\n\n\n\n\n\n\n")
+    # redis_client.setex(name=cache_key, time= 5, value=json.dumps(result_formatted))
+    # return result_formatted
 
 
     # stmt = (
