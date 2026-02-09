@@ -1,5 +1,6 @@
 from airflow.decorators import dag, task
 from airflow.hooks.base import BaseHook
+from airflow.models.param import Param
 from datetime import datetime, timedelta
 import logging
 import os
@@ -7,7 +8,6 @@ import polars as pl
 from taxi_utils.loader import Loader
 from taxi_utils.cleaner import Cleaner
 
-ORIGINAL_FILE_PATH = "/app_week1/data/yellow_tripdata_2023-01.parquet"
 TEMP_FILE = "/app_week1/data/temp_clean.parquet"
 
 logger = logging.getLogger("airflow.task")
@@ -19,6 +19,9 @@ logger = logging.getLogger("airflow.task")
         default_args={
             "retries":2,
             "retry_delay": timedelta(seconds=5)
+        },
+        params={
+            "filename": Param("yellow_tripdata_2023-01.parquet", type="string")
         }
 )
 def nyc_taxi_ingestion_pipeline():
@@ -43,6 +46,7 @@ def nyc_taxi_ingestion_pipeline():
                 table_loader = Loader()
 
                 # #reading using polars
+                ORIGINAL_FILE_PATH=f"/app_week1/data/{context['params']['filename']}"
                 df = pl.scan_parquet(ORIGINAL_FILE_PATH)
 
                 raw_table_name = "raw_trips"
@@ -61,11 +65,12 @@ def nyc_taxi_ingestion_pipeline():
             except Exception as e:
                 logger.error(f"Task 1 FAILED\n{str(e)}")
                 raise e
+        return ORIGINAL_FILE_PATH
 
 
 
     @task()
-    def process_raw_data():
+    def process_raw_data(ORIGINAL_FILE_PATH):
         
         print("Task 2")
 
@@ -75,6 +80,7 @@ def nyc_taxi_ingestion_pipeline():
         try:
             table_cleaner = Cleaner()
             
+            # ORIGINAL_FILE_PATH=f"/app_week1/data/{context['params']['filename']}"
             df = pl.scan_parquet(ORIGINAL_FILE_PATH)
 
             print("\nCleaning data now..........\n")
@@ -136,7 +142,7 @@ def nyc_taxi_ingestion_pipeline():
         else:
             print("File not found!!")
 
-    create_insert_raw_table() >> process_raw_data() >> create_insert_clean_table() >> cleanup_temp_files()
+    process_raw_data(create_insert_raw_table()) >> create_insert_clean_table() >> cleanup_temp_files()
 
 nyc_taxi_ingestion_pipeline()
 

@@ -47,7 +47,4 @@ class CleanTrip(Base):
     day_of_week = Column(Integer)
     trip_speed_mph = Column(Float)
 
-    # def to_dict(self):
-    #     """Converts this ORM object into a dictionary for easy debugging."""
-    #     return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 

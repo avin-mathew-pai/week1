@@ -2,15 +2,16 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
 from typing import Optional
-from database import get_db, redis_client
+from database import get_db
+from redis_config import redis_client
 from time import perf_counter
 from models import CleanTrip
 import json
 # from schemas import TripSummary
 
-api = FastAPI(title="taxi data api")
-
 CACHE_TTL_SECONDS = 30
+
+api = FastAPI(title="taxi data api")
 
 @api.get('/health')
 def health_check(db: Session = Depends(get_db)):
