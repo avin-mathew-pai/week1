@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Depends, Query
+from fastapi import FastAPI, Depends, status, HTTPException
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+import secrets
 from sqlalchemy.orm import Session
 from sqlalchemy import text, func, select
 from typing import Optional, Annotated
@@ -11,7 +13,30 @@ import json
 
 CACHE_TTL_SECONDS = 300
 
-api = FastAPI(title="taxi data api")
+security = HTTPBasic()
+
+def get_current_username(
+    credentials: Annotated[HTTPBasicCredentials, Depends(security)],
+):
+    current_username_bytes = credentials.username.encode("utf8")
+    correct_username_bytes = b"test1"
+    is_correct_username = secrets.compare_digest(
+        current_username_bytes, correct_username_bytes
+    )
+    current_password_bytes = credentials.password.encode("utf8")
+    correct_password_bytes = b"test2"
+    is_correct_password = secrets.compare_digest(
+        current_password_bytes, correct_password_bytes
+    )
+    if not (is_correct_username and is_correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
+
+api = FastAPI(title="taxi data api", dependencies=[Depends(get_current_username)])
 
 @api.get('/health')
 def health_check(db: Session = Depends(get_db)):
@@ -153,18 +178,20 @@ def get_aggregates(db: Session = Depends(get_db)):
     return final_result
 
 #xtra del
-@api.get("/testfordel")
-def del_key(key_names: Annotated[list[str] | None, Query()]):
+@api.delete("/redis-key-del")
+def del_key(key_names: str):
     resp = ""
-    for cache_key in key_names:
-        if cache_key in redis_client.keys():
-            print("found")
-            vall = redis_client.getdel(name=cache_key)
-            resp +=  f"key : {cache_key} deleted successfully!!\n value in key >>>  {vall} "
+    # all_keys = redis_client.keys()
+    sent_keys = key_names.split(",")
+    for cache_key in sent_keys:
+        vall = redis_client.getdel(name=cache_key)
+        if vall:
+            print("Found!")
+            resp +=  f"key : {cache_key} deleted successfully!!\n value in key >>>>>>>>>>>  {vall} "
         else:
             print("Not found")
-            resp += f"  key : {cache_key} does not exist!!  "
-    resp += f"remaining keys {redis_client.keys()}"
+            resp += f">>>>>>>>>>  key : {cache_key} does not exist!!  "
+    resp += f">>>>>>>>>>>>>> remaining keys {redis_client.keys()}"
     return resp
             
 
