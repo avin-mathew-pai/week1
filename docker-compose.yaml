@@ -68,7 +68,8 @@ x-airflow-common:
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-polars adbc-driver-postgresql pyarrow}
+    # _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-polars adbc-driver-postgresql pyarrow}
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-apache-airflow-providers-docker}
     # The following line can be used to set a custom config file, stored in the local config folder
     # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
     # AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
@@ -316,7 +317,7 @@ services:
   #     - taxi_db
   #   volumes:
   #     - /mnt/c/Datasetw1:/app_week1/data
-  #   restart: "no"
+  #   restart: always
   
   taxi-api:
     build: api/
@@ -341,6 +342,20 @@ services:
     volumes:
       - taxi-cache:/data
     restart: always
+
+  spark:
+    image: apache/spark:3.5.7-java17-python3
+    container_name: taxi-pyspark
+    env_file:
+      - .env
+    environment:
+      - PATH=${PATH}:/opt/spark/bin
+    depends_on:
+      - taxi_db
+    volumes:
+      - ./pyspark:/opt/spark/work-dir
+      - /mnt/c/Datasetw1:/opt/spark/data
+    command: tail -f /dev/null
 
 
 volumes:

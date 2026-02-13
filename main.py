@@ -4,7 +4,7 @@ from loader import Loader
 from cleaner import Cleaner
 import sys
 
-load_dotenv(dotenv_path="../config/.env")
+load_dotenv()
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
@@ -68,7 +68,7 @@ cleaned_df = table_cleaner.clean_data(df)
 print("\nInputting clean table to postgres !!!")
 
 # raw_table_name = input("Enter table name for clean data : ")
-clean_table_name = "clean_trips"
+clean_table_name = "clean_trips_test"
 
 # table_loader.load_table(df=cleaned_df, table_name=clean_table_name, URI=URI)
 
