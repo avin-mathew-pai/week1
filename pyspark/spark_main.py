@@ -1,9 +1,20 @@
+import logging
+import sys
+from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark import SparkConf
 from spark_loader import Loader
 from spark_cleaner import Cleaner
 
 file_path = "/opt/spark/data/yellow_tripdata_2023-01.parquet"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    stream=sys.stdout
+)
+
+logger = logging.getLogger("airflow.task")
 
 conf = SparkConf() \
     .setAppName("TaxiSparkPipeline") \
@@ -15,18 +26,18 @@ spark: SparkSession = (
     .getOrCreate()
 )
 
-spark.sparkContext.setLogLevel("WARN")
+# spark.sparkContext.setLogLevel("WARN")
 
 loader = Loader(spark)
 cleaner = Cleaner()
 
 raw_df = spark.read.parquet(file_path)
 
-loader.load_table(raw_df, "spark_raw_trips")
+loader.load_table(raw_df, "spark_raw_trips", logger, datetime)
 
-clean_df = cleaner.clean_data(raw_df)
+clean_df = cleaner.clean_data(raw_df, logger, datetime)
 
-loader.load_table(clean_df, "spark_clean_trips")
+loader.load_table(clean_df, "spark_clean_trips", logger, datetime)
 
 spark.stop()
 

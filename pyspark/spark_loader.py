@@ -3,8 +3,10 @@ class Loader():
 
         self.spark = spark_session
 
-    def load_table(self, df, table_name):
+    def load_table(self, df, table_name, logger, datetime):
 
+        logger.info(f"\n\nInserting table : {table_name} , START time = {datetime.now()}\n\n")
+        
         # jdbc_url = "jdbc:postgresql://taxi_db:5432/your_database_name"
         jdbc_url = "jdbc:postgresql://taxi_db:5432/mydatabase"
         connection_properties = {
@@ -22,8 +24,11 @@ class Loader():
                 properties=connection_properties
             )
         except Exception as e:
-            print(f"ERROR table : {table_name} already exists !!! \n {repr(e)}")
+            logger.error(f"ERROR table : {table_name} already exists !!! \n {repr(e)}")
         else: 
+            no_of_rows = df.count()
+            # LOG
+            logger.info(f"\n\nInserting table : {table_name} , END time = {datetime.now()}\n Number of rows processed : {no_of_rows}\nSUCCESS\n\n")
             print(f"Table : {table_name} SUCCESSFULLY input to postgres !!!")
         
 

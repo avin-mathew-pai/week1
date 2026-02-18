@@ -2,7 +2,9 @@ from pyspark.sql import functions as F
 
 class Cleaner():
 
-    def clean_data(self, df):
+    def clean_data(self, df, logger, datetime):
+
+        logger.info(f"\nProcessing dataframe , START time = {datetime.now()}")
         # CLEANING steps
 
         # 1. Adding an is_valid column (to polars df not to postgres table)
@@ -46,5 +48,8 @@ class Cleaner():
 
         #5. if dropping all non valid rows use this
         df = df.filter(F.col('is_valid'))
+
+        no_of_rows = df.count()
+        logger.info(f"\n\nProcessing dataframe , END time = {datetime.now()}\n Number of rows processed : {no_of_rows}\nSUCCESS\n\n")
 
         return df
