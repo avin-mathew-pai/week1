@@ -11,7 +11,7 @@ class Loader():
                     engine = "adbc"
                 )
         except Exception as e:
-            return f"ERROR table : {table_name} already exists !!! \n {repr(e)}"
+            print(f"ERROR table : {table_name} already exists !!! \n {repr(e)}")
         else: 
             print(f"Table : {table_name} SUCCESSFULLY input to postgres !!!")
         

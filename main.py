@@ -17,11 +17,11 @@ DB_NAME = os.getenv("DB_NAME")
 # file_path = input("Enter file path : ")
 # file_path.strip()
 
-# # copy this filepath
-# file_path = "/mnt/c/Datasetw1/yellow_tripdata_2023-01.parquet"  
+# copy this filepath
+file_path_kubernetes = "/mnt/c/Datasetw1/yellow_tripdata_2023-01.parquet"  
 
-# for docker
-file_path_docker = "/app_week1/data/yellow_tripdata_2023-01.parquet"
+# # for docker
+# file_path_docker = "/app_week1/data/yellow_tripdata_2023-01.parquet"
 
 
 # file_path_docker = input("Enter file path : ")
@@ -40,18 +40,26 @@ file_path_docker = "/app_week1/data/yellow_tripdata_2023-01.parquet"
 
 
 #reading using polars
-df = pl.scan_parquet(file_path_docker)
+# df = pl.scan_parquet(file_path_docker)
+
+# for kubernetes
+df = pl.scan_parquet(file_path_kubernetes)
+
 
 # URI_LOCAL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 #use uri for docker and db host for docker during containerization
-URI_DOCKER = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST_DOCKER}:{DB_PORT}/{DB_NAME}"
+# URI_DOCKER = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST_DOCKER}:{DB_PORT}/{DB_NAME}"
+
+# for kubernetes
+
+URI_DOCKER = f"postgresql://{DB_USER}:{DB_PASSWORD}@localhost:5433/{DB_NAME}"
 
 table_loader = Loader()
 table_cleaner = Cleaner()
 
 # raw_table_name = input("Enter table name for raw data : ")
-raw_table_name = "raw_trips"
+raw_table_name = "raw_trips_test"
 
 print("Inputting raw table to postgres!!!")
 
@@ -68,7 +76,7 @@ cleaned_df = table_cleaner.clean_data(df)
 print("\nInputting clean table to postgres !!!")
 
 # raw_table_name = input("Enter table name for clean data : ")
-clean_table_name = "clean_trips_test"
+clean_table_name = "spark_clean_trips"
 
 # table_loader.load_table(df=cleaned_df, table_name=clean_table_name, URI=URI)
 

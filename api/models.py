@@ -14,7 +14,8 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 class CleanTrip(Base):
-    __tablename__ = "clean_trips"
+    # __tablename__ = "clean_trips"
+    __tablename__ = "spark_clean_trips"
 
     VendorID = Column(Integer, primary_key=True)
 

@@ -144,15 +144,15 @@ def get_aggregates(db: Session = Depends(get_db)):
         return cached
 
     p_hour = db.execute(text(
-        """SELECT hour_of_day, COUNT("VendorID") as trips_per_hour FROM clean_trips GROUP BY hour_of_day ORDER BY hour_of_day ASC;"""
+        """SELECT hour_of_day, COUNT("VendorID") as trips_per_hour FROM spark_clean_trips GROUP BY hour_of_day ORDER BY hour_of_day ASC;"""
     ))
 
     p_day = db.execute(text(
-        """SELECT day_of_week, COUNT("VendorID") as trips_per_day_of_week FROM clean_trips GROUP BY  day_of_week;"""
+        """SELECT day_of_week, COUNT("VendorID") as trips_per_day_of_week FROM spark_clean_trips GROUP BY  day_of_week;"""
     ))
 
     avg_fare = db.execute(text(
-        """SELECT passenger_count, AVG(total_amount) AS average_fare FROM clean_trips GROUP BY passenger_count;"""
+        """SELECT passenger_count, AVG(total_amount) AS average_fare FROM spark_clean_trips GROUP BY passenger_count;"""
     ))
 
     final_result = {

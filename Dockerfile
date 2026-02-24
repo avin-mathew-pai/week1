@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     gcc \
     tzdata \
-    openjdk-17-jre-headless \
+    default-jre-headless \
     procps \
     && rm -rf /var/lib/apt/lists/*
 
