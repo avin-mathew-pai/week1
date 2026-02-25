@@ -8,7 +8,9 @@ class Loader():
         logger.info(f"\n\nInserting table : {table_name} , START time = {datetime.now()}\n\n")
         
         # jdbc_url = "jdbc:postgresql://taxi_db:5432/your_database_name"
-        jdbc_url = "jdbc:postgresql://taxi_db:5432/mydatabase"
+        # jdbc_url = "jdbc:postgresql://taxi_db:5432/mydatabase"
+        jdbc_url_kube = "jdbc:postgresql://postgresdb-service:5432/mydatabase"
+
         connection_properties = {
             "user": "avin",
             "password": "avin",
@@ -18,7 +20,7 @@ class Loader():
         try:
 
             df.repartition(4).write.jdbc(
-                url=jdbc_url,
+                url=jdbc_url_kube,
                 table=table_name,
                 mode="overwrite",
                 properties=connection_properties

@@ -33,7 +33,7 @@ cleaner = Cleaner()
 
 raw_df = spark.read.parquet(file_path)
 
-loader.load_table(raw_df, "spark_raw_trips", logger, datetime)
+loader.load_table(raw_df, "spark_raw_trips_kubeeeee", logger, datetime)
 
 clean_df = cleaner.clean_data(raw_df, logger, datetime)
 

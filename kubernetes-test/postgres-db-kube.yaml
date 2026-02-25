@@ -87,3 +87,26 @@ spec:
   ports:
     - port: 6379
       targetPort: 6379
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-etl-job
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+        - name: spark-container
+          image: taxi-spark-kube-job:v2
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: data-volume
+              mountPath: /opt/spark/data
+      volumes:
+        - name: data-volume
+          hostPath:
+            path: /minikube-data
+      restartPolicy: Never
