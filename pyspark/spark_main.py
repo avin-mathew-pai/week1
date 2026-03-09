@@ -5,8 +5,10 @@ from pyspark.sql import SparkSession
 from pyspark import SparkConf
 from spark_loader import Loader
 from spark_cleaner import Cleaner
+import time
 
 file_path = "/opt/spark/data/yellow_tripdata_2023-01.parquet"
+# file_path = "/mnt/c/Datasetw1/yellow_tripdata_2023-01.parquet"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,6 +40,10 @@ loader.load_table(raw_df, "spark_raw_trips_kubeeeee", logger, datetime)
 clean_df = cleaner.clean_data(raw_df, logger, datetime)
 
 loader.load_table(clean_df, "spark_clean_trips", logger, datetime)
+
+print("\n\n\nKeeping spark UI alive for 5 minutes\n\n\n")
+
+time.sleep(360)
 
 spark.stop()
 

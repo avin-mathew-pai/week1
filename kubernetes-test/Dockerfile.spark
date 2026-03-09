@@ -6,6 +6,6 @@ COPY ./pyspark/ /opt/spark/work-dir/
 
 USER spark
 
-ENTRYPOINT ["/opt/spark/bin/spark-submit"]
+# ENTRYPOINT ["/opt/spark/bin/spark-submit"]
 
-CMD [ "--jars", "/opt/spark/work-dir/postgresql-42.7.10.jar", "/opt/spark/work-dir/spark_main.py" ]
+# CMD [ "--jars", "/opt/spark/work-dir/postgresql-42.7.10.jar", "/opt/spark/work-dir/spark_main.py" ]

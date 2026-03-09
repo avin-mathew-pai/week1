@@ -1,0 +1,4 @@
+dags:
+  persistence:
+    enabled: true
+    existingClaim: airflow-dags-pvc

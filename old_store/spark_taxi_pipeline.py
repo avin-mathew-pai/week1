@@ -72,6 +72,18 @@ spark_taxi_pipeline()
 
 
 
+# kubectl port-forward svc/airflow-api-server 8080:8080 -n airflow, minikube mount /mnt/c/Datasetw1:/mnt/c/Datasetw1, minikube mount $(pwd):/mnt/week1
+# for spark ui
+# kubectl port-forward pod/<pod in airflow namespace> 4040:4040 -n airflow
+# will maybe have to delete following : 
+# kubectl delete pods -l component=dag-processor -n airflow
+# kubectl delete pods -l component=scheduler -n airflow
+# kubectl delete pods -l component=worker -n airflow
+
+# because we mount storage after the pods start
+
+
+
 
 
 
