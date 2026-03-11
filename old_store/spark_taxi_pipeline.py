@@ -52,7 +52,7 @@ def spark_taxi_pipeline():
         task_id="run_in_kubernetes",
         name="spark-taxi-processor",
         namespace="airflow",
-        image="taxi-spark-kube-job-ui:v4",
+        image="taxi-spark-kube-job-ui:v6",
         image_pull_policy="Never",
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
@@ -73,6 +73,7 @@ spark_taxi_pipeline()
 
 
 # kubectl port-forward svc/airflow-api-server 8080:8080 -n airflow, minikube mount /mnt/c/Datasetw1:/mnt/c/Datasetw1, minikube mount $(pwd):/mnt/week1
+# kubectl port-forward fastapi-pod 8000:8000
 # for spark ui
 # kubectl port-forward pod/<pod in airflow namespace> 4040:4040 -n airflow
 # will maybe have to delete following : 

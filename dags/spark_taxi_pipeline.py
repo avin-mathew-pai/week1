@@ -52,7 +52,7 @@ def spark_taxi_pipeline():
         task_id="run_in_kubernetes",
         name="spark-taxi-processor",
         namespace="airflow",
-        image="taxi-spark-kube-job-ui:v4",
+        image="taxi-spark-kube-job-ui:v7",
         image_pull_policy="Never",
         cmds=["/opt/spark/bin/spark-submit"],
         arguments=[
@@ -65,9 +65,7 @@ def spark_taxi_pipeline():
         volume_mounts=[data_volume_mount],
         get_logs=True,
         is_delete_operator_pod=True
-    )
-    taxi_spark_job
-
+)
 spark_taxi_pipeline()
 
 

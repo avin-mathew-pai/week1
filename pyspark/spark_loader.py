@@ -9,7 +9,7 @@ class Loader():
         
         # jdbc_url = "jdbc:postgresql://taxi_db:5432/your_database_name"
         # jdbc_url_local = "jdbc:postgresql://taxi_db:5432/mydatabase"    
-        jdbc_url_kube = "jdbc:postgresql://postgresdb-service:5432/mydatabase"
+        jdbc_url_kube = "jdbc:postgresql://postgresdb-service.default.svc.cluster.local:5432/mydatabase"    
 
         connection_properties = {
             "user": "avin",
@@ -17,20 +17,17 @@ class Loader():
             "driver": "org.postgresql.Driver",
             "batchsize": "10000"
         }
-        try:
+        print("\n\n\nAttempting to write the table\n\n\n")
 
-            df.repartition(4).write.jdbc(
-                url=jdbc_url_kube,
-                table=table_name,
-                mode="overwrite",
-                properties=connection_properties
-            )
-        except Exception as e:
-            logger.error(f"ERROR table : {table_name} already exists !!! \n {repr(e)}")
-        else: 
-            no_of_rows = df.count()
-            # LOG
-            logger.info(f"\n\nInserting table : {table_name} , END time = {datetime.now()}\n Number of rows processed : {no_of_rows}\nSUCCESS\n\n")
-            print(f"Table : {table_name} SUCCESSFULLY input to postgres !!!")
+        df.repartition(4).write.mode("overwrite").jdbc(
+            url=jdbc_url_kube,
+            table=table_name,
+            properties=connection_properties
+        )
+
+        no_of_rows = df.count()
+        # LOG
+        logger.info(f"\n\nInserting table : {table_name} , END time = {datetime.now()}\n Number of rows processed : {no_of_rows}\nSUCCESS\n\n")
+        print(f"Table : {table_name} SUCCESSFULLY input to postgres !!!")
         
 

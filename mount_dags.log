@@ -5,7 +5,7 @@
   - Version:      9p2000.L
   - Message Size: 262144
   - Options:      map[]
-  - Bind Address: 172.21.9.7:45571
+  - Bind Address: 172.21.9.7:36305
 * Userspace file server: 
 ufs starting
 * Successfully mounted /home/avinmathew/training_prjs/week1 to /mnt/week1
